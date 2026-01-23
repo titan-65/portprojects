@@ -1,6 +1,6 @@
 import { getHeader } from "h3";
 
-import type { AuthAdapter, AuthConfig } from "../types";
+import type { AuthAdapter, AuthConfig } from "../types.js";
 import type { H3Event } from "h3";
 
 export const basicAdapter: AuthAdapter = {

@@ -3,8 +3,8 @@ import { createError, getRequestURL } from "h3";
 import { useRuntimeConfig } from "nitro/runtime-config";
 import type { H3Event } from "h3";
 
-import { getAdapter } from "./adapters";
-import type { AuthConfig } from "./types";
+import { getAdapter } from "./adapters/index.js";
+import type { AuthConfig } from "./types.js";
 
 export default definePlugin((nitroApp) => {
   nitroApp.hooks.hook("request", async (event: H3Event) => {
@@ -18,7 +18,7 @@ export default definePlugin((nitroApp) => {
       return;
     }
 
-    if (bypassPaths.some((path) => url.pathname.startsWith(path))) {
+    if (bypassPaths.some((path: string) => url.pathname.startsWith(path))) {
       return;
     }
 

@@ -1,8 +1,8 @@
-import { apiKeyAdapter } from "./api-key";
-import { basicAdapter } from "./basic";
-import { bearerAdapter } from "./bearer";
-import { mockAdapter } from "./mock";
-import type { AuthAdapter, AuthProvider } from "../types";
+import { apiKeyAdapter } from "./api-key.js";
+import { basicAdapter } from "./basic.js";
+import { bearerAdapter } from "./bearer.js";
+import { mockAdapter } from "./mock.js";
+import type { AuthAdapter, AuthProvider } from "../types.js";
 
 export const adapters: AuthAdapter[] = [
   apiKeyAdapter,
