@@ -1,0 +1,17 @@
+{
+  "name": "brewstop-api",
+  "type": "module",
+  "scripts": {
+    "build": "nitro build",
+    "dev": "PORT=4000 nitro dev",
+    "preview": "npx srvx --prod .output/"
+  },
+  "devDependencies": {
+    "nitro": "latest",
+    "nitro-auth": "workspace:*",
+    "rolldown": "latest"
+  },
+  "dependencies": {
+    "h3": "^1.15.4"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "nitro-auth",
+  "version": "0.0.0",
+  "type": "module",
+  "types": "./src/index.ts",
+  "files": ["src"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./adapters": "./src/adapters/index.ts",
+    "./types": "./src/types.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "nitro": ">=3.0.0",
+    "h3": ">=1.0.0"
+  },
+  "devDependencies": {
+    "nitro": "latest",
+    "h3": "^1.15.4",
+    "typescript": "^5.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
