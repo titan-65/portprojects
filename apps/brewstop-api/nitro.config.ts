@@ -7,7 +7,7 @@ export default defineNitroConfig({
   database: {
     default: {
       connector: "sqlite",
-      options: { name: "db" },
+      options: { path: ":memory:" },
     },
   },
   plugins: ["../../packages/nitro-auth/src/index.ts"],

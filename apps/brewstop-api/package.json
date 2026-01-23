@@ -12,6 +12,7 @@
     "rolldown": "latest"
   },
   "dependencies": {
+    "better-sqlite3": "^12.6.2",
     "h3": "^1.15.4"
   }
 }
