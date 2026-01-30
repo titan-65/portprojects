@@ -1,18 +1,47 @@
 {
   "name": "nitro-auth",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "A lightweight Nitro plugin that adds pluggable auth adapters.",
   "type": "module",
-  "types": "./src/index.ts",
-  "files": [
-    "src"
-  ],
-  "exports": {
-    ".": "./src/index.ts",
-    "./adapters": "./src/adapters/index.ts",
-    "./types": "./src/types.ts"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titan-65/portprojects.git",
+    "directory": "packages/nitro-auth"
   },
+  "keywords": [
+    "nitro",
+    "auth",
+    "plugin",
+    "h3",
+    "authentication"
+  ],
+  "author": "Vantol Bennett <71115937+titan-65@users.noreply.github.com>",
+  "license": "MIT",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./adapters": {
+      "types": "./dist/adapters/index.d.ts",
+      "import": "./dist/adapters/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "test": "vitest"
   },
   "peerDependencies": {
     "h3": ">=1.0.0",
@@ -20,9 +49,10 @@
   },
   "devDependencies": {
     "@types/node": "^25.0.10",
-    "h3": "^1.15.4",
+    "h3": "2.0.1-rc.11",
     "nitro": "latest",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^4.0.18"
   },
   "publishConfig": {
     "access": "public"
