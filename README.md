@@ -1,135 +1,101 @@
-# Turborepo starter
+# PortProjects Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+A Turborepo-based monorepo containing full-stack applications and reusable packages.
 
-## Using this example
+## Apps and Packages
 
-Run the following command:
+### Apps
 
-```sh
-npx create-turbo@latest
-```
+- **`brewstop-api`**: A [Nitro](https://nitro.unjs.io/) backend API serving food truck data with SQLite database and authentication via `nitro-auth`.
+- **`brewstop-web`**: A [Nuxt 3](https://nuxt.com/) frontend application consuming the API.
 
-## What's inside?
+### Packages
 
-This Turborepo includes the following packages/apps:
+- **`nitro-auth`**: A lightweight authentication plugin for Nitro with pluggable adapters (API Key, Bearer Token, Basic Auth, Mock). Published to npm.
+- **`@repo/typescript-config`**: Shared TypeScript configurations used throughout the monorepo.
 
-### Apps and Packages
+## What's Inside?
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+This monorepo is built with:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
+- [Turborepo](https://turbo.build/repo) for build orchestration and caching
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- [pnpm](https://pnpm.io/) for fast, disk space efficient package management
 
-### Build
+### Technologies
 
-To build all apps and packages, run the following command:
+| Category | Technology |
+|----------|------------|
+| Backend Framework | Nitro (powered by H3) |
+| Frontend Framework | Nuxt 3 (Vue 3) |
+| Database | SQLite (better-sqlite3) |
+| ORM | Drizzle ORM |
+| Testing | Vitest |
+| Auth | nitro-auth (custom package) |
 
+## Getting Started
+
+```bash
+# Install dependencies
+pnpm install
+
+# Run all apps in development mode
+pnpm dev
+
+# Build everything
+pnpm build
+
+# Run tests
+pnpm test
 ```
-cd my-turborepo
 
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
+## Package Details
+
+### nitro-auth
+
+A lightweight, zero-dependency authentication middleware for Nitro and H3.
+
+- **npm**: `npm install nitro-auth`
+- **Features**: API Key, Bearer Token, Basic Auth, Mock adapters
+- **Location**: `/packages/nitro-auth`
+- **README**: [packages/nitro-auth/README.md](packages/nitro-auth/README.md)
+
+### brewstop-api
+
+Backend API for the BrewStop food truck finder application.
+
+- **Port**: 4000
+- **Features**: REST API, SQLite database, authentication middleware
+- **Location**: `/apps/brewstop-api`
+
+### brewstop-web
+
+Frontend Nuxt 3 application for discovering food trucks.
+
+- **Port**: 3000
+- **Features**: SSR, API integration, modern UI
+- **Location**: `/apps/brewstop-web`
+
+## Build
+
+```bash
+# With global turbo installed (recommended)
 turbo build
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+# Or with pnpm
+pnpm build
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## Development
 
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+```bash
+# Start all apps
+pnpm dev
 
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+# Start specific app
+cd apps/brewstop-api && pnpm dev
 ```
 
-### Develop
+## License
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+MIT
